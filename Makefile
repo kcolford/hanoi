@@ -1,3 +1,5 @@
+CFLAGS = -ggdb
+
 all: hanoi
 
 clean:
