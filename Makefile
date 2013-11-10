@@ -1,4 +1,5 @@
-CFLAGS = -ggdb
+CFLAGS = -O3
+LDFLAGS = -s
 
 all: hanoi
 
