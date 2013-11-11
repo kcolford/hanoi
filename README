@@ -5,3 +5,5 @@
 
 This is an implementation of solving the general case of the Towers of
 Hanoi puzzle when the number of towers increases to more than 3.
+
+See the INSTALL file for instructions on how to install this program.
