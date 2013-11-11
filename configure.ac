@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([hanoi], [1.0], [colfordk@gmail.com],,
+AC_INIT([hanoi], [1.0.0], [colfordk@gmail.com],,
 		 [http://github.com/kcolford/hanoi.git])
 AM_INIT_AUTOMAKE
 AM_SILENT_RULES([yes])
@@ -11,7 +11,7 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
-AM_PROG_CC_C_O
+AM_MISSING_PROG([HELP2MAN], [help2man], [$missing_dir])
 
 # Checks for libraries.
 
