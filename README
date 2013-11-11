@@ -6,4 +6,12 @@
 This is an implementation of solving the general case of the Towers of
 Hanoi puzzle when the number of towers increases to more than 3.
 
+See the man page for more information.
+
+If you aquired this program from the git repository, please run
+`touch ChangeLog && autoreconf -i && ./configure && make'.  Automake
+will complain if `ChangeLog' doesn't exist and you also need to
+install some standard shell scripts that are too big to have
+circulating around the repository.
+
 See the INSTALL file for instructions on how to install this program.
