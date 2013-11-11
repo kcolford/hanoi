@@ -16,15 +16,23 @@
    along with this program.  If not, see
    <http://www.gnu.org/licenses/>.
 
-   The copyright holder can be contacted at
-   <mailto:colfordk@gmail.com>
+   The copyright holder can be contacted at <colfordk@gmail.com>
 
 */
 
+#include "config.h"
+
+/* Standard C headers. */
+#include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
 
-void
+#define tower(n, k) (_tower ((n), (k), 1, (k) + 2, 2, 3))
+
+const char *argp_program_version = PACKAGE_VERSION;
+const char *argp_program_bug_address = PACKAGE_BUGREPORT;
+
+static void
 _tower (int n,     /* The number of disks that we have to move. */
 	int k,     /* The number of extra towers that we have. */
 	int start, /* The tower that we are moving disks from. */
@@ -55,14 +63,48 @@ _tower (int n,     /* The number of disks that we have to move. */
       _tower (n - fi, k, inter, end, start, nxt);
     }
   else
-    printf ("Move %d to %d.\n", start, end);
+    printf ("Move the top disk of tower %d to tower %d.\n", start, end);
 }
 
-/* Set up a frontend to the recursion. */
-#define tower(n, k) (_tower ((n), (k), 1, (k) + 2, 2, 3))
+#if HAVE_ARGP_H
 
-int main ()
+/* Non-Standard header for option processing. */
+#include <argp.h>
+
+static error_t 
+parse (int key, char *arg, struct argp_state *state)
 {
-  tower (8, 2);
+  int *input = state->input;
+  switch (key)
+    {
+    case ARGP_KEY_ARG:
+      if (state->arg_num > 2)
+	argp_usage (state);
+      input[state->arg_num] = atoi (arg);
+      break;
+    default:
+      return ARGP_ERR_UNKNOWN;
+    }
+  return 0;
+}  
+
+static struct argp argp = { 0, parse, "[ARG1 [ARG2]]", 
+			    "Print the solution to the Towers of Hanoi "
+			    "puzzle for ARG1 disks (default 8) and ARG2 "
+			    "towers (default 2)." };
+
+#else
+
+/* If we don't have access to argp.h, then we have to hide the
+   definition of argp_parse using C99 variadic macros. */
+#define argp_parse(...) (0)
+
+#endif
+
+int main (int argc, char *argv[])
+{
+  int args[] = { 8, 2 };
+  argp_parse (&argp, argc, argv, 0, 0, args);
+  tower (args[0], args[1]);
   return 0;
 }
