@@ -11,6 +11,7 @@ AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_RANLIB
 AM_MISSING_PROG([HELP2MAN], [help2man], [$missing_dir])
 
 # Checks for libraries.

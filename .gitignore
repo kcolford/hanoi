@@ -1,6 +1,8 @@
 # files from the build process
 hanoi
+hanoi.1
 *.o
+*.a
 *.tar.*
 .deps
 TAGS
