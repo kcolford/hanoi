@@ -29,9 +29,6 @@
 
 #define tower(n, k) (_tower ((n), (k), 1, (k) + 2, 2, 3))
 
-const char *argp_program_version = PACKAGE_VERSION;
-const char *argp_program_bug_address = PACKAGE_BUGREPORT;
-
 static void
 _tower (int n,     /* The number of disks that we have to move. */
 	int k,     /* The number of extra towers that we have. */
@@ -71,6 +68,9 @@ _tower (int n,     /* The number of disks that we have to move. */
 /* Non-Standard header for option processing. */
 #include <argp.h>
 
+const char *argp_program_version = VERSION;
+const char *argp_program_bug_address = PACKAGE_BUGREPORT;
+
 static error_t 
 parse (int key, char *arg, struct argp_state *state)
 {
@@ -91,7 +91,9 @@ parse (int key, char *arg, struct argp_state *state)
 static struct argp argp = { 0, parse, "[ARG1 [ARG2]]", 
 			    "Print the solution to the Towers of Hanoi "
 			    "puzzle for ARG1 disks (default 8) and ARG2 "
-			    "towers (default 2)." };
+			    "towers (default 2).\v"
+			    "For more information, see the home page at\n\n" 
+			    PACKAGE_URL };
 
 #else
 
@@ -99,7 +101,7 @@ static struct argp argp = { 0, parse, "[ARG1 [ARG2]]",
    definition of argp_parse using C99 variadic macros. */
 #define argp_parse(...) (0)
 
-#endif
+#endif /* HAVE_ARGP_H */
 
 int main (int argc, char *argv[])
 {

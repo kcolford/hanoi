@@ -1,8 +1,9 @@
 hanoi
 *.o
-.deps/*
+.deps
 Makefile
 config.h
 config.log
 config.status
 stamp-h1
+autom4te.cache

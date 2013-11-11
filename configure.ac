@@ -2,7 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([hanoi], [1.0.0], [<colfordk@gmail.com>])
+AC_INIT([hanoi], [1.0.0], [Kieran Colford <colfordk@gmail.com>],,
+		 [http://github.com/kcolford/hanoi.git])
 AM_INIT_AUTOMAKE
 AC_CONFIG_SRCDIR([hanoi.c])
 AC_CONFIG_HEADERS([config.h])
