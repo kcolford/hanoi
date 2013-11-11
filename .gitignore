@@ -1,5 +1,6 @@
 hanoi
 *.o
+*.tar.*
 .deps
 Makefile
 config.h

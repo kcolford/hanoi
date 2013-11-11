@@ -92,8 +92,7 @@ static struct argp argp = { 0, parse, "[ARG1 [ARG2]]",
 			    "Print the solution to the Towers of Hanoi "
 			    "puzzle for ARG1 disks (default 8) and ARG2 "
 			    "towers (default 2).\v"
-			    "For more information, see the home page at\n\n" 
-			    PACKAGE_URL };
+			    "Project home: " PACKAGE_URL };
 
 #else
 
