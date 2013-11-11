@@ -22,10 +22,8 @@
 
 #include "config.h"
 
-/* Standard C headers. */
-#include <stdlib.h>
-#include <stdio.h>
-#include <assert.h>
+#include <stdio.h> /* printf */
+#include <assert.h> /* assert */
 
 #define tower(n, k) (_tower ((n), (k), 1, (k) + 2, 2, 3))
 
@@ -63,8 +61,9 @@ _tower (int n,     /* The number of disks that we have to move. */
     printf ("Move the top disk of tower %d to tower %d.\n", start, end);
 }
 
-#if HAVE_ARGP_H
+#if HAVE_ARGP_H && HAVE_STDLIB_H
 
+#include <stdlib.h> /* atoi */
 /* Non-Standard header for option processing. */
 #include <argp.h>
 
@@ -92,7 +91,7 @@ static struct argp argp = { 0, parse, "[ARG1 [ARG2]]",
 			    "Print the solution to the Towers of Hanoi "
 			    "puzzle for ARG1 disks (default 8) and ARG2 "
 			    "towers (default 2).\v"
-			    "Project home: " PACKAGE_URL };
+			    "Project home page: " PACKAGE_URL };
 
 #else
 

@@ -1,0 +1,6 @@
+-*- mode: text -*-
+
+Automake!!
+
+The `hanoi' program has been ported to use Automake!  This means that
+it is even more cleanly documented and that it's more portable.
