@@ -27,6 +27,12 @@
 
 #define tower(n, k) (_tower ((n), (k), 1, (k) + 2, 2, 3))
 
+#ifndef INITIALMESSAGE
+# define INITIALMESSAGE "Move the top disk of tower %d to tower %d."
+#endif
+
+static char *message = INITIALMESSAGE;
+
 static void
 _tower (int n,     /* The number of disks that we have to move. */
 	int k,     /* The number of extra towers that we have. */
@@ -58,7 +64,10 @@ _tower (int n,     /* The number of disks that we have to move. */
       _tower (n - fi, k, inter, end, start, nxt);
     }
   else
-    printf ("Move the top disk of tower %d to tower %d.\n", start, end);
+    {
+      printf (message, start, end);
+      printf ("\n");
+    }
 }
 
 #if HAVE_ARGP_H && HAVE_STDLIB_H
@@ -76,30 +85,41 @@ parse (int key, char *arg, struct argp_state *state)
   int *input = state->input;
   switch (key)
     {
+    case 'p':
+      message = arg;
+      break;
     case ARGP_KEY_ARG:
       if (state->arg_num > 2)
 	argp_usage (state);
-      input[state->arg_num] = atoi (arg);
+      else
+	input[state->arg_num] = atoi (arg);
       break;
     default:
       return ARGP_ERR_UNKNOWN;
     }
   return 0;
-}  
+}
 
-static struct argp argp = { 0, parse, "[ARG1 [ARG2]]", 
+static struct argp_option opts[] = {
+  { "printf", 'p', "STRING", 0, 
+    "Use STRING as the template argument to printf.  The default "
+    "arguement is \"" INITIALMESSAGE "\"" },
+  { 0 }
+};
+
+static struct argp argp = { opts, parse, "[ARG1 [ARG2]]", 
 			    "Print the solution to the Towers of Hanoi "
 			    "puzzle for ARG1 disks (default 8) and ARG2 "
 			    "towers (default 2).\v"
 			    "Project home page: " PACKAGE_URL };
 
-#else
+#else /* HAVE_ARGP_H && HAVE_STDLIB_H */
 
 /* If we don't have access to argp.h, then we have to hide the
    definition of argp_parse using C99 variadic macros. */
 #define argp_parse(...) (0)
 
-#endif /* HAVE_ARGP_H */
+#endif /* HAVE_ARGP_H && HAVE_STDLIB_H */
 
 int main (int argc, char *argv[])
 {

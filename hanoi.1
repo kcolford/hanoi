@@ -9,6 +9,11 @@ hanoi \- manual page for hanoi 1.0
 Print the solution to the Towers of Hanoi puzzle for ARG1 disks (default 8) and
 ARG2 towers (default 2).
 .TP
+\fB\-p\fR, \fB\-\-printf\fR=\fISTRING\fR
+Use STRING as the template argument to printf.
+The default arguement is "Move the top disk of
+tower %d to tower %d."
+.TP
 \-?, \fB\-\-help\fR
 Give this help list
 .TP
@@ -17,6 +22,9 @@ Give a short usage message
 .TP
 \fB\-V\fR, \fB\-\-version\fR
 Print program version
+.PP
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
 .PP
 Project home page: http://github.com/kcolford/hanoi.git
 .SH "REPORTING BUGS"
