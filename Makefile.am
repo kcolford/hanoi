@@ -2,4 +2,7 @@ bin_PROGRAMS = hanoi
 man_MANS = hanoi.1
 
 %.1: %
-	env PATH=.:$$PATH help2man $< > $@ || $(RM) $@
+	env PATH=.:$$PATH help2man -N $< > $@ || $(RM) $@
+
+ChangeLog::
+	git2cl > $@

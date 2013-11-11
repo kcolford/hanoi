@@ -1,6 +1,8 @@
 hanoi
 *.o
 *.tar.*
+Makefile.in
+config.h.in
 .deps
 Makefile
 config.h
@@ -8,3 +10,8 @@ config.log
 config.status
 stamp-h1
 autom4te.cache
+configure
+depcomp
+install-sh
+missing
+ChangeLog
