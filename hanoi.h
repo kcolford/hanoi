@@ -23,7 +23,9 @@
 
 typedef void(*han_echo_ptr)(int,int);
 
-extern int _han_tower (int, int, int, int, int, int, han_echo_ptr);
+extern int _han_tower (register int, register int, register int, 
+		       register int, register int, register int, 
+		       han_echo_ptr);
 
 /* Front-end to the _han_tower function.
 

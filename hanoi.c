@@ -24,17 +24,17 @@
 #include <assert.h> /* assert */
 
 int
-_han_tower (int n,                /* The number of disks that we have
+_han_tower (register int n,       /* The number of disks that we have
 				     to move. */
-	    int k,                /* The number of extra towers that
+	    register int k,       /* The number of extra towers that
 				     we have. */
-	    int start,            /* The tower that we are moving
+	    register int start,   /* The tower that we are moving
 				     disks from. */
-	    int end,              /* The tower that we are moving
+	    register int end,     /* The tower that we are moving
 				     disks to. */
-	    int inter,            /* The tower that we are using for
+	    register int inter,   /* The tower that we are using for
 				     an intermediate. */
-	    int nxt,              /* The next tower in the queue that
+	    register int nxt,     /* The next tower in the queue that
 				     can be selected for an
 				     intermediate. */
 	    han_echo_ptr callback /* A callback function for what to
@@ -48,7 +48,7 @@ _han_tower (int n,                /* The number of disks that we have
 
   if (n > 1)
     {
-      int fi = 1, i;
+      register int fi = 1, i;
 
       /* Break the input n into a smaller piece that minimizes the
 	 running time. */
