@@ -23,22 +23,29 @@
 
 typedef void(*han_echo_ptr)(int,int);
 
-extern int _han_tower (register int, register int, register int, 
-		       register int, register int, register int, 
-		       han_echo_ptr);
+extern int han_tower (int, int, han_echo_ptr);
 
-/* Front-end to the _han_tower function.
+struct _han_tower_args
+{
+  int n;
+  int k;
+  int start;
+  int end;
+  int inter;
+  int nxt;
+  han_echo_ptr callback;
+};
 
-   Returns the number of moves taken to solve the puzzle while calling
-   the callback c for each move with the arguments `from' and `to'.
+# ifdef __GNUC__
 
-   The initial start point is on tower 1 and the initial end is tower
-   2.
-   
-   n is the number disks
-   k is the number of towers
-   c is the callback function
-*/
-#define han_tower(n, k, c) (_han_tower ((n), (k), 1, 2, 3, 4, (c)))
+extern int _han_tower (struct _han_tower_args *);
+
+#  define han_tower(n, k, c)						\
+  ({									\
+    struct _han_tower_args _args = { (n), (k), 1, 2, 3, 4, (c) };	\
+    _han_tower (&_args);						\
+  })
+
+# endif /* __GNUC__ */
 
 #endif /* not HAN_HANOI_H */

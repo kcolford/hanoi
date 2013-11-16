@@ -21,47 +21,75 @@
 */
 
 #include "hanoi.h"
+
+#ifdef han_tower
+# undef han_tower
+#endif
+
 #include <assert.h> /* assert */
 
+#define swap(a, b)				\
+  do 						\
+    {						\
+      typeof (a) _tmp = (a);			\
+      (a) = (b);				\
+      (b) = _tmp;				\
+    }						\
+  while (0)
+
 int
-_han_tower (register int n,       /* The number of disks that we have
-				     to move. */
-	    register int k,       /* The number of extra towers that
-				     we have. */
-	    register int start,   /* The tower that we are moving
-				     disks from. */
-	    register int end,     /* The tower that we are moving
-				     disks to. */
-	    register int inter,   /* The tower that we are using for
-				     an intermediate. */
-	    register int nxt,     /* The next tower in the queue that
-				     can be selected for an
-				     intermediate. */
-	    han_echo_ptr callback /* A callback function for what to
-				     do when we go to move a disk. */
-	    )
+_han_tower (struct _han_tower_args *args)
 {
   int ret = 1;
 
   /* Make sure that the impossible doesn't happen. */
-  assert (k > 0 || n == 1);
+  assert (args->k > 0 || args->n == 1);
 
-  if (n > 1)
+  if (args->n > 1)
     {
       register int fi = 1, i;
 
       /* Break the input n into a smaller piece that minimizes the
 	 running time. */
-      for (i = 1; fi * (i + k) / i <= n; i++)
-	fi = fi * (i + k) / i;
-      fi = fi * k / (i + k - 1);
+      for (i = 1; fi * (i + args->k) / i <= args->n; i++)
+	fi = fi * (i + args->k) / i;
+      fi = fi * args->k / (i + args->k - 1);
+
+      args->n -= fi;
 
       /* Recursively proceed. */
-      ret  = _han_tower (n - fi, k, start, inter, end, nxt, callback);
-      ret += _han_tower (fi, k - 1, start, end, nxt, nxt + 1, callback);
-      ret += _han_tower (n - fi, k, inter, end, start, nxt, callback);
+      swap (args->inter, args->end);
+      ret  = _han_tower (args);
+      swap (args->inter, args->end);
+
+      i = args->inter;
+      args->inter = args->nxt;
+
+      swap (args->n, fi);
+      args->nxt += 1;
+      args->k -= 1;
+      ret += _han_tower (args);
+      args->k += 1;
+      args->nxt -= 1;
+      swap (args->n, fi);
+      
+      args->inter = i;
+
+      swap (args->inter, args->start);
+      ret += _han_tower (args);
+      swap (args->inter, args->start);
+
+      args->n += fi;
     }
   else
-    callback (start, end);
+    args->callback (args->start, args->end);
   return ret;
 }
+
+int 
+han_tower (int n, int k, han_echo_ptr callback)
+{
+  struct _han_tower_args args = { n, k, 1, 2, 3, 4, callback };
+  return _han_tower (&args);
+}
+
