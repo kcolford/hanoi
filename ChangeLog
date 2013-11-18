@@ -1,5 +1,11 @@
 2013-11-17  Kieran Colford <colfordk@gmail.com>
 
+	* .gitignore, ChangeLog, Makefile.am, Makefile.in, README,
+	configure, configure.ac, hanoi.1, hanoi.c, hanoi.h, main.c,
+	src/hanoi.c, src/hanoi.h, src/main.c: Cleaned up everything.
+
+2013-11-17  Kieran Colford <colfordk@gmail.com>
+
 	* .gitignore, Makefile.am, Makefile.in, aclocal.m4, config.h.in,
 	configure, configure.ac, hanoi.1, m4/.gitignore,
 	m4/gnulib-cache.m4, main.c: Set up the project so that it would use
