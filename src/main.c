@@ -83,7 +83,8 @@ parse (int key, char *arg, struct argp_state *state)
 static void
 print_instructions (int start, int end)
 {
-  printf (message, start, end);
+  if (print_instruct)
+    printf (message, start, end);
 }
 
 int main (int argc, char *argv[])
