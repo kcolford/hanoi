@@ -7,7 +7,7 @@ AC_INIT([Hanoi], [1.1], [colfordk@gmail.com],,
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE
 AM_SILENT_RULES([yes])
-AC_CONFIG_SRCDIR([hanoi.c])
+AC_CONFIG_SRCDIR([src/hanoi.h])
 AC_CONFIG_HEADERS([config.h])
 
 # Checks for programs.

@@ -585,7 +585,7 @@ PACKAGE_STRING='Hanoi 1.1'
 PACKAGE_BUGREPORT='colfordk@gmail.com'
 PACKAGE_URL='http://github.com/kcolford/hanoi.git'
 
-ac_unique_file="hanoi.c"
+ac_unique_file="src/hanoi.h"
 # Factoring default headers for most tests.
 ac_includes_default="\
 #include <stdio.h>

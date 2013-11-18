@@ -1,3 +1,29 @@
+2013-11-17  Kieran Colford <colfordk@gmail.com>
+
+	* .gitignore, Makefile.am, Makefile.in, aclocal.m4, config.h.in,
+	configure, configure.ac, hanoi.1, m4/.gitignore,
+	m4/gnulib-cache.m4, main.c: Set up the project so that it would use
+	gnulib.
+
+2013-11-16  Kieran Colford <colfordk@gmail.com>
+
+	* hanoi.c, hanoi.h: Optimized the function call overhead in in
+	_han_tower.
+
+2013-11-13  Kieran Colford <colfordk@gmail.com>
+
+	* Makefile.am, hanoi.c, hanoi.h: Added hints to the C code.
+
+2013-11-11  Kieran Colford <colfordk@gmail.com>
+
+	* .gitignore, Makefile.am, configure.ac, hanoi.c, hanoi.h, main.c: 
+	Added build target for static library.
+
+2013-11-11  Kieran Colford <colfordk@gmail.com>
+
+	* .gitignore, ChangeLog, Makefile.am, configure.ac, hanoi.1,
+	hanoi.c: Added features and cleaned up Automake.
+
 2013-11-11  Kieran Colford <colfordk@gmail.com>
 
 	* hanoi.1, hanoi.c: Added in a -p, --printf option to specify the

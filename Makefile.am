@@ -2,18 +2,16 @@ ACLOCAL_AMFLAGS = -I m4
 SUBDIRS = lib
 EXTRA_DIST = m4/gnulib-cache.m4
 
-AM_CPPFLAGS = -DNDEBUG
-AM_CFLAGS = -ggdb3 -pg
+#AM_CPPFLAGS = -DNDEBUG
 
 noinst_LIBRARIES = libhanoi.a
-libhanoi_a_SOURCES = hanoi.c hanoi.h
+libhanoi_a_SOURCES = src/hanoi.c src/hanoi.h
 
 bin_PROGRAMS = hanoi
-hanoi_SOURCES = main.c hanoi.h
+hanoi_SOURCES = src/main.c src/hanoi.h
 hanoi_LDADD = libhanoi.a $(LIBINTL)
 
-man_MANS = hanoi.1
-MAINTAINERCLEAN = $(man_MANS)
+dist_man_MANS = hanoi.1
 
-hanoi.1: hanoi.c
+hanoi.1: src/main.c configure.ac
 	$(HELP2MAN) --name="solve the puzzle" -N ./hanoi -o $@

@@ -1,4 +1,3 @@
--*- mode: text -*-
 
 			 The Towers of Hanoi
 		  Implementation of the General Case
@@ -12,7 +11,7 @@ puzzle.
 See the man page for more information.
 
 If you aquired this program from the git repository, please run:
-`touch ChangeLog && autoreconf -i && ./configure && make'.  
+`gnulib-tool --update && autoreconf -i && ./configure && make'.  
 
 Automake will complain if `ChangeLog' doesn't exist and you also need
 to install some standard shell scripts that are too big to have

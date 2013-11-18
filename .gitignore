@@ -4,6 +4,9 @@ hanoi
 *.a
 *.tar.*
 
+# profiling data
+gmon.out
+
 # random stuff
 .deps
 Makefile
