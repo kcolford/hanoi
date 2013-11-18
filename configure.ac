@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_INIT([Hanoi], [1.1], [colfordk@gmail.com],,
+AC_INIT([hanoi], [1.1], [colfordk@gmail.com],,
 		 [http://github.com/kcolford/hanoi.git])
 AC_CONFIG_AUX_DIR([build-aux])
 AM_INIT_AUTOMAKE([foreign])
@@ -31,5 +31,5 @@ AC_CHECK_HEADERS([stdlib.h])
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile lib/Makefile man/Makefile])
+AC_CONFIG_FILES([Makefile lib/Makefile])
 AC_OUTPUT
