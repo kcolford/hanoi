@@ -36,14 +36,20 @@ void(*argp_program_version_hook)(FILE *, struct argp_state *) = print_version;
 void
 print_version (FILE *file, struct argp_state *state)
 {
-  fputs (PACKAGE_STRING "\n\n"
-	 "Copyright (C) 2013 Kieran Colford.\n"
-	 "License GPLv3+: GNU GPL version 3 or later "
-	 "<http://gnu.org/licenses/gpl.html>.\n"
-	 "This is free software: you are free to "
-	 "change and redistribute it.\n"
-	 "There is NO WARRANTY, to the extent permitted by law.\n\n"
-	 "Written by Kieran Colford\n", file);
+  static char *version[] = {
+    PACKAGE_STRING,
+    "",
+    "Copyright (C) 2013 Kieran Colford.",
+    "License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.",
+    "This is free software: you are free to change and redistribute it.",
+    "There is NO WARRANTY, to the extent permitted by law.",
+    "",
+    "Written by Kieran Colford",
+    0 };
+  char **p = version;
+  
+  while (*p)
+    fprintf (file, "%s\n", *p++);
 }
 
 static char *message = INITIALMESSAGE "\n";
@@ -87,7 +93,7 @@ parse (int key, char *arg, struct argp_state *state)
       else if (state->arg_num == 1)
 	k = atoi (arg);
       else
-	return ARGP_ERR_UNKNOWN;
+	argp_usage (state);
       break;
     default:
       return ARGP_ERR_UNKNOWN;
